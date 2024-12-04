@@ -28,3 +28,17 @@ jobs:
         steps:
             - name: Deploy to Github pages
               uses: actions/deploy-pages@v4
+    google:
+        name: Google
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: fabasoad/translation-action@main
+            id: google-step
+            with:
+              provider: google
+              lang: ms-en
+              source: Kemenangan
+          - name: Print the result
+            run: echo "Translation is '${{ steps.google-step.outputs.text }}'"
+            shell: sh
